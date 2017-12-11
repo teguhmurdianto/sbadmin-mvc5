@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h2>Your session has expired...</h2>
+                    <h3 class="panel-title">Please do Sign In again</h3>
+                </div>
+                <div class="panel-body">
+                    <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = Request.QueryString["returnUrl"] })">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        window.onload = function () {
+            if (typeof history.pushState === "function") {
+            console.log('pushstate function');
+            history.pushState("jibberish", null, null);
+            window.onpopstate = function () {
+                    history.pushState('newjibberish', null, null);
+                    // Handle the back (or forward) buttons here
+                    // Will NOT handle refresh, use onbeforeunload for this.
+                };
+            }
+            else {
+                var ignoreHashChange = true;
+                window.onhashchange = function () {
+                    console.log('onhashchange');
+                    if (!ignoreHashChange) {
+                        ignoreHashChange = true;
+                        window.location.hash = Math.random();
+                        // Detect and redirect change here
+                        // Works in older FF and IE9
+                        // * it does mess with your hash symbol (anchor?) pound sign
+                        // delimiter on the end of the URL
+                    }
+                    else {
+                        ignoreHashChange = false;
+                    }
+                };
+            }
+        };
+    </script>
+}

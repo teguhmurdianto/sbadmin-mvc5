@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- DataTables CSS -->
+    <link href="@Url.Content("~/Vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css")" rel="stylesheet" type="text/css" />
+    <!-- DataTables Responsive CSS -->
+    <link href="@Url.Content("~/Vendor/datatables-responsive/css/dataTables.responsive.css")" rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/Vendor/morrisjs/morris.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Vendor/font-awesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Vendor/animate.css/animate.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Vendor/bootstrap-dropdown-hover/css/bootstrap-dropdownhover.min.css")" rel="stylesheet" type="text/css" />
+
+    <!-- jQuery -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="@Url.Content("~/Scripts/metisMenu.min.js")"></script>
+    <script src="@Url.Content("~/Vendor/bootstrap-dropdown-hover/js/bootstrap-dropdownhover.min.js")"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Navigation -->
+        @Html.Partial("_Navbar");
+        <div class="page-wrapper">
+            @RenderBody()
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <div class="modal fade bs-logout-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="logoutmodal" id="logoutmodal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="border-radius: 0px;">
+                <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+                <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to logout?</div>
+                <div class="modal-footer">
+                    @using (Html.BeginForm("Logoff", "Account"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" id="modallogoutbtn" value="Logoff" class="btn btn-primary" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+         
+    <!-- DataTables JavaScript -->
+    <script src="@Url.Content("~/Vendor/raphael/raphael-min.js")"></script>
+ 
+    <!-- DataTables JavaScript -->
+    <script src="@Url.Content("~/Vendor/datatables/media/js/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/Vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js")"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

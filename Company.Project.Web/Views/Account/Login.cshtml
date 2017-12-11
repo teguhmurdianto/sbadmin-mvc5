@@ -1,0 +1,54 @@
+﻿@model Company.Project.Web.Models.Account.UserLoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+                            <div class="form-group has-feedback">
+                                @Html.TextBoxFor(model => model.Username, new { @placeholder = "Enter Username", @class = "form-control" })
+                                <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                            </div>
+                            <p class="text-center text-bold">Or</p>
+                            <div class="form-group has-feedback">
+                                @Html.TextBoxFor(model => model.Email, new { @type = "email", @placeholder = "Enter Email", @class = "form-control" })
+                                <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                @Html.TextBoxFor(model => model.Password, new { @type = "password", @placeholder = "Password", @required = "required", @class = "form-control" })
+                                <span class="fa fa-lock form-control-feedback text-muted"></span>
+                            </div>
+                            <div class="clearfix">
+                                <div class="checkbox c-checkbox pull-left mt0">
+                                    <label>
+                                        @Html.TextBoxFor(model => model.RememberMe, new { @type = "checkbox", @value = "", @name = "remember" })
+                                        <span class="fa fa-check"></span>Remember Me
+                                    </label>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="@Url.Action("Recover", "Pages")" class="text-muted">Forgot your password?</a>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-primary mt-lg">Login</button>
+                        </form>
+
+                    }
+                    <p class="pt-lg text-center">Need to Signup?</p><a href="@Url.Action("Register", "Pages")" class="btn btn-block btn-default">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

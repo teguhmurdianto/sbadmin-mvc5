@@ -1,0 +1,16 @@
+.DS_Store
+packages/*
+!packages/repositories.config
+
+# Editor directories and files
+.idea
+.vscode
+*.ntvs*
+*.njsproj
+*/bin/Debug/*
+*/bin/Release/*
+*/obj/Debug/*
+*/obj/Release/*
+
+*Web/bin/*
+!Company.Project.Web/bin/.temp
