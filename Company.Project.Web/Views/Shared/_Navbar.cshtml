@@ -7,9 +7,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        @Html.ActionLink("SB Admin v2.0", "Index", new { controller = "Home" }, new { @class = "navbar-brand" })
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">SB Admin v2.0</a>
     </div>
     <!-- /.navbar-header -->
+    
+    <ul class="nav navbar-nav nav-sidebar-toggle">
+        <li><a class="fa fa-bars sidebar-toggle"></a></li>
+    </ul>
+
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-animations="fadeIn" href="#">
@@ -224,7 +229,7 @@
         <!-- /.dropdown -->
     </ul>
     <!-- /.navbar-top-links -->
-    <div class="navbar-default sidebar" role="navigation" style="min-height: 450px; overflow-y: scroll;">
+    <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">

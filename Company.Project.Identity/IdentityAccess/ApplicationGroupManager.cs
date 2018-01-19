@@ -66,14 +66,14 @@ namespace Company.Project.Identity.IdentityAccess
             var newRoles = _roleManager.Roles.Where(r => roleNames.Any(n => n == r.Name));
             foreach (var role in newRoles)
             {
-                thisGroup.ApplicationRoles.Add(new ApplicationGroupRole { ApplicationGroupId = groupId, ApplicationRoleId = role.Id });
+                thisGroup.ApplicationRoles.Add(new ApplicationGroupRole { app_group_id = groupId, app_role_id = role.Id });
             }
             _db.SaveChanges();
 
             // Reset the roles for all affected users:
             foreach (var groupUser in thisGroup.ApplicationUsers)
             {
-                this.RefreshUserGroupRoles(groupUser.ApplicationUserId);
+                this.RefreshUserGroupRoles(groupUser.app_user_id);
             }
             return IdentityResult.Success;
         }
@@ -90,14 +90,14 @@ namespace Company.Project.Identity.IdentityAccess
             var newRoles = _roleManager.Roles.Where(r => roleNames.Any(n => n == r.Name));
             foreach (var role in newRoles)
             {
-                thisGroup.ApplicationRoles.Add(new ApplicationGroupRole { ApplicationGroupId = groupId, ApplicationRoleId = role.Id });
+                thisGroup.ApplicationRoles.Add(new ApplicationGroupRole { app_group_id = groupId, app_role_id = role.Id });
             }
             await _db.SaveChangesAsync();
 
             // Reset the roles for all affected users:
             foreach (var groupUser in thisGroup.ApplicationUsers)
             {
-                await this.RefreshUserGroupRolesAsync(groupUser.ApplicationUserId);
+                await this.RefreshUserGroupRolesAsync(groupUser.app_user_id);
             }
             return IdentityResult.Success;
         }
@@ -110,7 +110,7 @@ namespace Company.Project.Identity.IdentityAccess
             foreach (var group in currentGroups)
             {
                 group.ApplicationUsers
-                    .Remove(group.ApplicationUsers.FirstOrDefault(gr => gr.ApplicationUserId == userId));
+                    .Remove(group.ApplicationUsers.FirstOrDefault(gr => gr.app_user_id == userId));
             }
             await _db.SaveChangesAsync();
 
@@ -118,7 +118,7 @@ namespace Company.Project.Identity.IdentityAccess
             foreach (string groupId in groupIds)
             {
                 var newGroup = await this.FindByIdAsync(groupId);
-                newGroup.ApplicationUsers.Add(new ApplicationUserGroup { ApplicationUserId = userId, ApplicationGroupId = groupId });
+                newGroup.ApplicationUsers.Add(new ApplicationUserGroup { app_user_id = userId, app_group_id = groupId });
             }
             await _db.SaveChangesAsync();
 
@@ -133,7 +133,7 @@ namespace Company.Project.Identity.IdentityAccess
             foreach (var group in currentGroups)
             {
                 group.ApplicationUsers
-                    .Remove(group.ApplicationUsers.FirstOrDefault(gr => gr.ApplicationUserId == userId));
+                    .Remove(group.ApplicationUsers.FirstOrDefault(gr => gr.app_user_id == userId));
             }
             _db.SaveChanges();
 
@@ -141,7 +141,7 @@ namespace Company.Project.Identity.IdentityAccess
             foreach (string groupId in groupIds)
             {
                 var newGroup = this.FindById(groupId);
-                newGroup.ApplicationUsers.Add(new ApplicationUserGroup { ApplicationUserId = userId, ApplicationGroupId = groupId });
+                newGroup.ApplicationUsers.Add(new ApplicationUserGroup { app_user_id = userId, app_group_id = groupId });
             }
             _db.SaveChanges();
 
@@ -168,7 +168,7 @@ namespace Company.Project.Identity.IdentityAccess
 
             // Get the damn role names:
             var allRoles = _roleManager.Roles.ToList();
-            var addTheseRoles = allRoles.Where(r => newGroupRoles.Any(gr => gr.ApplicationRoleId == r.Id));
+            var addTheseRoles = allRoles.Where(r => newGroupRoles.Any(gr => gr.app_role_id == r.Id));
             var roleNames = addTheseRoles.Select(n => n.Name).ToArray();
 
             // Add the user to the proper roles
@@ -196,7 +196,7 @@ namespace Company.Project.Identity.IdentityAccess
 
             // Get the damn role names:
             var allRoles = await _roleManager.Roles.ToListAsync();
-            var addTheseRoles = allRoles.Where(r => newGroupRoles.Any(gr => gr.ApplicationRoleId == r.Id));
+            var addTheseRoles = allRoles.Where(r => newGroupRoles.Any(gr => gr.app_role_id == r.Id));
             var roleNames = addTheseRoles.Select(n => n.Name).ToArray();
 
             // Add the user to the proper roles
@@ -266,7 +266,7 @@ namespace Company.Project.Identity.IdentityAccess
             await _groupStore.UpdateAsync(group);
             foreach (var groupUser in group.ApplicationUsers)
             {
-                await this.RefreshUserGroupRolesAsync(groupUser.ApplicationUserId);
+                await this.RefreshUserGroupRolesAsync(groupUser.app_user_id);
             }
             return IdentityResult.Success;
         }
@@ -276,7 +276,7 @@ namespace Company.Project.Identity.IdentityAccess
             _groupStore.Update(group);
             foreach (var groupUser in group.ApplicationUsers)
             {
-                this.RefreshUserGroupRoles(groupUser.ApplicationUserId);
+                this.RefreshUserGroupRoles(groupUser.app_user_id);
             }
             return IdentityResult.Success;
         }
@@ -295,7 +295,7 @@ namespace Company.Project.Identity.IdentityAccess
         {
             var result = new List<ApplicationGroup>();
             var userGroups = (from g in this.Groups
-                              where g.ApplicationUsers.Any(u => u.ApplicationUserId == userId)
+                              where g.ApplicationUsers.Any(u => u.app_user_id == userId)
                               select g).ToListAsync();
             return await userGroups;
         }
@@ -304,27 +304,27 @@ namespace Company.Project.Identity.IdentityAccess
         {
             var result = new List<ApplicationGroup>();
             var userGroups = (from g in this.Groups
-                              where g.ApplicationUsers.Any(u => u.ApplicationUserId == userId)
+                              where g.ApplicationUsers.Any(u => u.app_user_id == userId)
                               select g).ToList();
             return userGroups;
         }
 
         public async Task<IEnumerable<ApplicationRole>> GetGroupRolesAsync(string groupId)
         {
-            var grp = await _db.ApplicationGroups.FirstOrDefaultAsync(g => g.Id == groupId);
+            var grp = await _db.ApplicationGroups.FirstOrDefaultAsync(g => g.id == groupId);
             var roles = await _roleManager.Roles.ToListAsync();
             var groupRoles = (from r in roles
-                              where grp.ApplicationRoles.Any(ap => ap.ApplicationRoleId == r.Id)
+                              where grp.ApplicationRoles.Any(ap => ap.app_role_id == r.Id)
                               select r).ToList();
             return groupRoles;
         }
 
         public IEnumerable<ApplicationRole> GetGroupRoles(string groupId)
         {
-            var grp = _db.ApplicationGroups.FirstOrDefault(g => g.Id == groupId);
+            var grp = _db.ApplicationGroups.FirstOrDefault(g => g.id == groupId);
             var roles = _roleManager.Roles.ToList();
             var groupRoles = from r in roles
-                             where grp.ApplicationRoles.Any(ap => ap.ApplicationRoleId == r.Id)
+                             where grp.ApplicationRoles.Any(ap => ap.app_role_id == r.Id)
                              select r;
             return groupRoles;
         }
@@ -335,7 +335,7 @@ namespace Company.Project.Identity.IdentityAccess
             var users = new List<ApplicationUser>();
             foreach (var groupUser in group.ApplicationUsers)
             {
-                var user = _db.Users.Find(groupUser.ApplicationUserId);
+                var user = _db.Users.Find(groupUser.app_user_id);
                 users.Add(user);
             }
             return users;
@@ -348,7 +348,7 @@ namespace Company.Project.Identity.IdentityAccess
             foreach (var groupUser in group.ApplicationUsers)
             {
                 var user = await _db.Users
-                    .FirstOrDefaultAsync(u => u.Id == groupUser.ApplicationUserId);
+                    .FirstOrDefaultAsync(u => u.Id == groupUser.app_user_id);
                 users.Add(user);
             }
             return users;

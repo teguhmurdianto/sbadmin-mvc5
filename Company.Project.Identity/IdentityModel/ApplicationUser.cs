@@ -8,23 +8,30 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Company.Project.Identity.IdentityModel
 {
     public class ApplicationUser : IdentityUser<string, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>
     {
-        public DateTime CreatedTime { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? ModifiedTime { get; set; }
-        public string ModifiedBy { get; set; }
-        public int RowStatus { get; set; }
+        public DateTime created_time { get; set; }
+
+        [StringLength(128)]
+        public string created_by { get; set; }
+
+        public DateTime? modified_time { get; set; }
+
+        [StringLength(128)]
+        public string modified_by { get; set; }
+
+        public int row_status { get; set; }
 
         public ApplicationUser()
         {
-            this.Id = Guid.NewGuid().ToString();
-            this.CreatedTime = DateTime.Now;
-            this.CreatedBy = GlobalEnum.SystemName.System;
-            this.RowStatus = GlobalEnum.RowStatus.Active;
+            Id = Guid.NewGuid().ToString();
+            created_time = DateTime.Now;
+            created_by = GlobalEnum.SystemName.System;
+            row_status = GlobalEnum.RowStatus.Active;
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)

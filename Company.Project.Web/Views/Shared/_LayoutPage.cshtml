@@ -6,24 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link href="@Url.Content("~/Vendor/morrisjs/morris.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Vendor/font-awesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>  
 
-    <!-- jQuery -->
+    <!-- base css -->
+    @Styles.Render("~/bundles/bootstrap_css")
+    @Styles.Render("~/bundles/app_css")
+    @Styles.Render("~/bundles/morris_css")
+
+    <!-- base js -->
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="@Url.Content("~/Scripts/metisMenu.min.js")"></script>
+    
+    <!-- direct url -->
+    <link href="@Url.Content("~/Vendor/font-awesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="wrapper" class="wrapper">
         @RenderBody()
     </div>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
+    <!-- custom js -->
+    @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
 </body>
 </html>

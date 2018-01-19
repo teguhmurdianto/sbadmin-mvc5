@@ -293,7 +293,7 @@ namespace Company.Project.Web.Controllers
                         return Register();
                     }
 
-                    result = GroupManager.SetUserGroups(user.Id, new string[] { groupresult.Id });
+                    result = GroupManager.SetUserGroups(user.Id, new string[] { groupresult.id });
 
                     if (result.Succeeded)
                     {

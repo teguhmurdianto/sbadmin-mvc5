@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{82C27D4E-0E66-4736-9CDB-5B32E76C815B}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Company.Project.Web</RootNamespace>
@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -318,6 +319,13 @@
     <Content Include="Vendor\bootstrap-dropdown-hover\js\bootstrap-dropdownhover.js" />
     <Content Include="Vendor\bootstrap-dropdown-hover\js\bootstrap-dropdownhover.min.js" />
     <Content Include="Vendor\bootstrap-social\bootstrap-social.css" />
+    <Content Include="Vendor\carhartl-jquery-cookie\Gruntfile.js" />
+    <Content Include="Vendor\carhartl-jquery-cookie\jquery.cookie.js" />
+    <Content Include="Vendor\carhartl-jquery-cookie\MIT-LICENSE.txt" />
+    <Content Include="Vendor\carhartl-jquery-cookie\test\index.html" />
+    <Content Include="Vendor\carhartl-jquery-cookie\test\malformed_cookie.html" />
+    <Content Include="Vendor\carhartl-jquery-cookie\test\server.js" />
+    <Content Include="Vendor\carhartl-jquery-cookie\test\tests.js" />
     <Content Include="Vendor\datatables-plugins\api\average%28%29.js" />
     <Content Include="Vendor\datatables-plugins\api\column%28%29.title%28%29.js" />
     <Content Include="Vendor\datatables-plugins\api\columns%28%29.order%28%29.js" />
@@ -869,6 +877,17 @@
     <Content Include="Vendor\bootstrap-dropdown-hover\LICENSE" />
     <Content Include="Vendor\bootstrap-dropdown-hover\README.md" />
     <Content Include="Views\Account\LoginExpired.cshtml" />
+    <Content Include="Vendor\carhartl-jquery-cookie\.gitignore" />
+    <Content Include="Vendor\carhartl-jquery-cookie\.jshintrc" />
+    <Content Include="Vendor\carhartl-jquery-cookie\.tm_properties" />
+    <Content Include="Vendor\carhartl-jquery-cookie\.travis.yml" />
+    <Content Include="Vendor\carhartl-jquery-cookie\bower.json" />
+    <Content Include="Vendor\carhartl-jquery-cookie\CHANGELOG.md" />
+    <Content Include="Vendor\carhartl-jquery-cookie\component.json" />
+    <Content Include="Vendor\carhartl-jquery-cookie\CONTRIBUTING.md" />
+    <Content Include="Vendor\carhartl-jquery-cookie\cookie.jquery.json" />
+    <Content Include="Vendor\carhartl-jquery-cookie\package.json" />
+    <Content Include="Vendor\carhartl-jquery-cookie\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

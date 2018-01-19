@@ -104,7 +104,7 @@ namespace Company.Project.Identity.IdentityAccess
             this.ThrowIfDisposed();
             return QueryableExtensions
                 .FirstOrDefaultAsync<ApplicationGroup>(this._groupStore.EntitySet,
-                    (ApplicationGroup u) => u.Name.ToUpper() == groupName.ToUpper());
+                    (ApplicationGroup u) => u.name.ToUpper() == groupName.ToUpper());
         }
 
         public ApplicationGroup FindByName(string groupName)

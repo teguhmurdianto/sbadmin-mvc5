@@ -4,31 +4,29 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 html {
-  /* @replace rtl */
-  direction: ltr;
-  height: 100%;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-}
-
-body {
-  overflow: hidden;
+    direction: ltr;
+    height: 100%;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
 }
 
 /*#region wrapper */
 
 .wrapper {
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .page-wrapper {
     padding: 0 15px;
-    min-height: 568px;
     background-color: #fff;
+    -webkit-transition: 0.125s ease-in-out;
+    -moz-transition: 0.125s ease-in-out;
+    -o-transition: 0.125s ease-in-out;
+    transition: 0.125s ease-in-out;
 }
 
 @media(min-width:768px) {
@@ -139,7 +137,6 @@ body {
 .sidebar .nav-third-level li {
     border-bottom: 0 !important;
 }
-
     .sidebar .nav-second-level li a {
         padding-left: 37px;
     }
@@ -424,3 +421,29 @@ table.dataTable thead .sorting_desc_disabled {
 }
 
 /*#endregion */
+.sidebar {
+    -webkit-transition: 0.125s ease-in-out;
+    -moz-transition: 0.125s ease-in-out;
+    -o-transition: 0.125s ease-in-out;
+    transition: 0.125s ease-in-out;
+}
+
+.nav-sidebar-toggle {
+    display: none;
+}
+
+@media(min-width: 768px) {
+    .nav-sidebar-toggle {
+        display: block;
+    }
+
+    .sidebar-toggle {
+        cursor: pointer;
+    }
+}
+
+@media(min-width: 768px) {
+    .navbar-brand {
+        min-width: 250px;
+    }
+}

@@ -24,9 +24,9 @@
         window.onload = function () {
             if (typeof history.pushState === "function") {
             console.log('pushstate function');
-            history.pushState("jibberish", null, null);
+            history.pushState("null", null, null);
             window.onpopstate = function () {
-                    history.pushState('newjibberish', null, null);
+                    history.pushState('null', null, null);
                     // Handle the back (or forward) buttons here
                     // Will NOT handle refresh, use onbeforeunload for this.
                 };

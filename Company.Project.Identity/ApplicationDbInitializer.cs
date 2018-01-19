@@ -70,7 +70,7 @@ namespace Company.Project.Identity
                     var emailUser = userManager.FindByEmail(emailName);
                     if (user == null && emailUser == null)
                     {
-                        user = new ApplicationUser { UserName = userName, Email = emailName, CreatedTime = DateTime.Now, CreatedBy = GlobalEnum.SystemName.System, RowStatus = GlobalEnum.RowStatus.Active };
+                        user = new ApplicationUser { UserName = userName, Email = emailName, created_time = DateTime.Now, created_by = GlobalEnum.SystemName.System, row_status = GlobalEnum.RowStatus.Active };
                         var userresult = userManager.Create(user, password);
                         userresult = userManager.SetLockoutEnabled(user.Id, false);
                         if (!userresult.Succeeded)
@@ -81,15 +81,15 @@ namespace Company.Project.Identity
                                 throw new Exception(roleresult.Errors.ElementAt(0));
                             }
 
-                            groupresult = groupManager.DeleteGroup(group.Id);
+                            groupresult = groupManager.DeleteGroup(group.id);
                             if (!groupresult.Succeeded)
                             {
                                 throw new Exception(groupresult.Errors.ElementAt(0));
                             }
                         }
 
-                        groupManager.SetUserGroups(user.Id, new string[] { newGroup.Id });
-                        groupManager.SetGroupRoles(newGroup.Id, new string[] { role.Name });
+                        groupManager.SetUserGroups(user.Id, new string[] { newGroup.id });
+                        groupManager.SetGroupRoles(newGroup.id, new string[] { role.Name });
                     }
                 }
             }

@@ -66,7 +66,7 @@ namespace Company.Project.Identity.IdentityAccess
 
         public virtual ApplicationGroup GetByName(object Name)
         {
-            return this.DbEntitySet.Where(a => a.Name.ToUpper() == Name.ToString().ToUpper()).FirstOrDefault();
+            return this.DbEntitySet.Where(a => a.name.ToUpper() == Name.ToString().ToUpper()).FirstOrDefault();
         }
 
 
